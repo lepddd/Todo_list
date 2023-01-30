@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { styled } from "@stitches/react";
-import { Icon } from "@iconify/react";  
+import { Icon } from "@iconify/react";
 import useTaskStore from "../../store/useTask";
 
 //Stiches Style
@@ -48,19 +48,20 @@ export const InputTask = () => {
     setTask(e.target.value);
   }
 
-  function addTask(e: React.MouseEvent<HTMLElement>) {
+  function addTask(e: React.FormEvent<HTMLElement>) {
     newTask(e, task);
     setTask("");
   }
 
   return (
-    <InputForm>
+    <InputForm onSubmit={(e) => addTask(e)}>
       <Input
         onChange={(e) => handleChange(e)}
         value={task}
         placeholder="Task..."
+        required
       />
-      <Button onClick={(e) => addTask(e)}>
+      <Button type="submit">
         <Icon icon="ic:baseline-plus" color="#f7f0f5" width="20" height="20" />
       </Button>
     </InputForm>
